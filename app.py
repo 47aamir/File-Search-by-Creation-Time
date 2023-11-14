@@ -7,7 +7,6 @@ try:
     print('Leading + is for more than and - is for less than')
     sleep(0.5)
     input_str = input()
-    # Extracting the comparison operator and duration parts
     comparison_operator = input_str[0]
     duration_parts = input_str[1:].split('=')
     
@@ -15,6 +14,7 @@ try:
         raise ValueError("Invalid comparison operator. Please enter - or +")
 
     takeinputdir = input('Enter Path i.e c:\\Users\\ : \n')
+    sleep(0.5)
     takeinputdir1 = takeinputdir.replace("\\", "\\\\")
 
     time_unit = duration_parts[0].strip()
@@ -28,10 +28,8 @@ try:
             file_path = os.path.join(root, file)
             ctime = datetime.fromtimestamp(os.path.getctime(file_path))
             
-            # Check whether the duration is less than or more than based on user input
-            if (comparison_operator == '+' and ctime < check_duration) or \
-               (comparison_operator == '-' and ctime > check_duration):
-                print(file_path)
+            if (comparison_operator == '+' and ctime < check_duration) or (comparison_operator == '-' and ctime > check_duration):
+                print(file_path, "|", ctime.strftime("%I:%M:%S %p %d-%b-%Y"))
 except Exception as e:
     print(f"*Error*: {e}, please try again!")
 else:
